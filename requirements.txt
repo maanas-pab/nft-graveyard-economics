@@ -1,0 +1,7 @@
+# Data pipeline & art generation
+pandas>=2.0
+Pillow>=10.0
+matplotlib>=3.7
+
+# Dev tooling
+pytest>=7.4
