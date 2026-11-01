@@ -163,15 +163,6 @@ def _rot(pts, ang):
     return [(x * c - y * s, x * s + y * c) for x, y in pts]
 
 
-def _gravity(pts, droop, pull):
-    """Bend every point downward in proportion to how far out it is — the wilt."""
-    return [(x, y + droop * pull * (min(1.0, abs(y) / 1.0) ** 2)) for x, y in pts]
-
-
-def _ease(t):
-    return t * t * (3 - 2 * t)
-
-
 # --------------------------------------------------------------------------- #
 # rendering                                                                    #
 # --------------------------------------------------------------------------- #
@@ -226,43 +217,46 @@ def render_flower(cell=(420, 560), species: Species = None, bloom: Bloom = None,
             for x, y in lpts]
     d.polygon(lpts, fill=_mix(stem_c, (200, 220, 160), 0.35) + (255,))
 
-    # --- petals: outer ring, then inner ring, shed ones lie on the soil -----
+    # --- petals: outer ring, then inner ring; shed ones lie on the soil -----
     n = species.petals
-    shed_n = round(n * bloom.shed) + round(n * 0.5 * bloom.shed)  # both rings
+    total = 2 * n
+    shed_n = round(total * bloom.shed)
+    step = math.ceil(total / shed_n) if shed_n else total + 1
+    # deterministic shed pattern: every `step`-th petal drops, no RNG required
+    shed = {(k % n, k // n) for k in range(0, total, step)} if shed_n else set()
+
     angle0 = rnd.uniform(0, math.tau)
-    fallen = 0
     for ring, (scale, ring_off, depth) in enumerate(
             ((1.0, 0.0, 0.0), (0.62, math.pi / n, 0.18))):
         for i in range(n):
-            if fallen < shed_n and (i + ring) % max(1, n // max(1, shed_n)) == 0:
-                fallen += 1
-                self_fallen = True
-            else:
-                self_fallen = False
-            ang = angle0 + ring_off + i * math.tau / n
+            ang = angle0 + ring_off + i * math.tau / n   # screen direction of tip
             length = R * scale * (0.86 + 0.22 * bloom.ratio)
             width = length * (0.42 if species.shape != "pointed" else 0.34)
-            poly, spine = _petal_poly(length, width, species.shape)
-            pts = [(x, y + length) for x, y in poly]          # base -> tip up
-            pts = _rot(pts, ang + math.pi)                     # point outward
-            pull = R * (1.15 + 1.7 * bloom.droop)
-            pts = [(cx + x, cy + y + bloom.droop * pull * (abs(y) / R) ** 2)
-                   for x, y in pts]
+            poly, _ = _petal_poly(length, width, species.shape)
+            # local base is at the origin, tip at +y — rotate so the tip faces
+            # outward along `ang`, then translate to the head centre.
+            local = _rot(poly, ang - math.pi / 2)
+            local = [(x, y + bloom.droop * R * 1.35 * (y / length) ** 2)
+                     for x, y in local]                     # gravity, in screen space
+            pts = [(cx + x, cy + y) for x, y in local]
 
             fill = _mix(petal_lo if ring == 0 else petal_c, petal_hi,
                         0.18 + 0.5 * ((i * 37 + ring * 11) % 7) / 7)
             fill = _mix(fill, DEAD_LEAF, depth + decay * 0.25)
-            d.polygon([(cx + x, cy + y) for x, y in pts], fill=fill + (255,),
-                      outline=_mix(fill, (70, 55, 40), 0.45) + (255,))
 
-            if self_fallen:                                   # re-lay it on soil
+            if (i, ring) in shed:                           # re-lay it on the soil
                 fx = sx + rnd.uniform(-0.42, 0.42) * w * (0.4 + 0.6 * bloom.ratio)
-                fy = ground_y + rnd.uniform(-0.01, 0.05) * h
-                rot = rnd.uniform(-2.6, 2.6)
-                fpts = _rot([(x * 0.8, y * 0.8) for x, y in pts], rot)
-                dead = _mix(fill, DEAD_LEAF, 0.75)
-                d.polygon([(fx + x, fy + y) for x, y in fpts],
-                          fill=dead + (255,), outline=_mix(dead, (60, 50, 35), 0.5) + (255,))
+                fy = ground_y + rnd.uniform(-0.012, 0.045) * h
+                flat = _rot(poly, rnd.uniform(-math.pi, math.pi))
+                # fallen petals lie flat: squash against the ground plane
+                flat = [(fx + x * 1.25, fy + y * 0.40) for x, y in flat]
+                dead = _mix(fill, DEAD_LEAF, 0.72)
+                d.polygon(flat, fill=dead + (255,),
+                          outline=_mix(dead, (60, 50, 35), 0.5) + (255,))
+                continue
+
+            d.polygon(pts, fill=fill + (255,),
+                      outline=_mix(fill, (70, 55, 40), 0.45) + (255,))
 
     # --- the coin: centre disk shrinks and rusts ---------------------------
     coin_r = R * (0.10 + 0.30 * bloom.ratio)
@@ -291,11 +285,7 @@ def render_flower(cell=(420, 560), species: Species = None, bloom: Bloom = None,
         d.text((bx + st_w / 2, by + st_h * 0.45), epitaph, font=f,
                fill=(70, 66, 60, 255), anchor="mm")
 
-    img = img.resize(cell, Image.LANCZOS)
-
-    if background == "paper" or background is None and epitaph:
-        pass
-    return img
+    return img.resize(cell, Image.LANCZOS)
 
 
 def paper(cell=(420, 560), tone=PAPER) -> Image.Image:
