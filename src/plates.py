@@ -148,10 +148,11 @@ def garden_plate(date, meta: pd.DataFrame, df: pd.DataFrame) -> Image.Image:
 
     stamp = pd.Timestamp(date).strftime("%B %Y")
     total_usd = g["market_usd"].sum()
+    usd = f"${total_usd / 1e9:,.2f}B" if total_usd >= 1e9 else f"${total_usd / 1e6:,.1f}M"
     d.text((w / 2, 64), f"The Garden — {stamp}",
            font=serif_font(40), fill=INK + (255,), anchor="mm")
     d.text((w / 2, 104),
-           f"five blue chips, ${total_usd / 1e6:,.1f}M combined floor value",
+           f"five blue chips, {usd} combined floor value",
            font=serif_font(18), fill=FAINT + (255,), anchor="mm")
 
     for i, (_, row) in enumerate(g.iterrows()):
