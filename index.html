@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GraveNFT Yard — an economic autopsy of five blue-chip NFTs, in flowers</title>
+<meta name="description" content="Drag the timeline and watch five famous NFT collections bloom and wilt with their floor prices. $9.98B to $426M, told in petals.">
+<meta property="og:title" content="GraveNFT Yard">
+<meta property="og:description" content="Five blue-chip NFTs, 70 months, one flower each — watch them wilt with the floor price.">
+<meta property="og:image" content="https://raw.githubusercontent.com/maanas-pab/nft-graveyard-economics/main/assets/plates/lifecycle_grid.png">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥀</text></svg>">
+</head>
+<body>
+
+<header class="masthead">
+  <p class="kicker">Speculation &amp; bubble burst · a botanical study</p>
+  <h1>GraveNFT&nbsp;Yard</h1>
+  <p class="dek">
+    Five famous NFT collections. Seventy months. One flower each —
+    petals shed and colour drained in proportion to how far the floor has
+    fallen from its own all-time high.
+  </p>
+  <p class="dek dek-tight">
+    Drag the timeline. Or press <kbd>space</kbd> to let 2021 happen to them again.
+  </p>
+</header>
+
+<!-- ------------------------------------------------------------------ -->
+<section class="garden-wrap" aria-label="interactive garden">
+  <div class="readout">
+    <div class="readout-cell">
+      <span class="readout-label">Month</span>
+      <span class="readout-value" id="ro-month">—</span>
+    </div>
+    <div class="readout-cell">
+      <span class="readout-label">Combined floor value</span>
+      <span class="readout-value" id="ro-value">—</span>
+    </div>
+    <div class="readout-cell readout-alert">
+      <span class="readout-label">Below April 2022 peak</span>
+      <span class="readout-value" id="ro-destroyed">—</span>
+    </div>
+    <div class="readout-cell">
+      <span class="readout-label">ETH/USD</span>
+      <span class="readout-value" id="ro-eth">—</span>
+    </div>
+  </div>
+
+  <canvas id="garden" width="1340" height="560"
+          aria-label="five flowers that wilt with their NFT floor prices"></canvas>
+
+  <!-- timeline -->
+  <div class="timeline">
+    <button id="play" class="play" aria-label="play the timeline">▶</button>
+    <div class="track-wrap">
+      <input type="range" id="scrub" min="0" max="69" value="0" step="1"
+             aria-label="month slider" aria-valuetext="January 2021">
+      <div class="ticks" id="ticks"></div>
+    </div>
+    <div class="speeds" role="group" aria-label="playback speed">
+      <button data-speed="2" class="speed">0.5×</button>
+      <button data-speed="1" class="speed is-on">1×</button>
+      <button data-speed="0.5" class="speed">2×</button>
+    </div>
+  </div>
+  <div class="events" id="events"></div>
+</section>
+
+<!-- ------------------------------------------------------------------ -->
+<section class="panel">
+  <h2>The five specimens</h2>
+  <p class="lede">
+    A floor price is the most optimistic number in the building: it is the
+    <em>cheapest</em> thing anyone will still sell you. Everything above it is
+    belief. Below it is nothing.
+  </p>
+  <div class="cards" id="cards"><!-- built by app.js --></div>
+</section>
+
+<!-- ------------------------------------------------------------------ -->
+<section class="panel">
+  <h2>What a floor actually is</h2>
+  <div class="cols">
+    <div class="col">
+      <h3>1 · A bid, not a bank</h3>
+      <p>
+        “Floor × supply” is a convenience, not a bank balance. It assumes the
+        next ten thousand buyers pay what the next one did. In a thin book,
+        selling even a fraction of a supply walks the floor down through every
+        price on the way.
+      </p>
+    </div>
+    <div class="col">
+      <h3>2 · Belief compounds upward, then doesn’t</h3>
+      <p>
+        Prices rose because prices rose — a reflexive loop funded by new
+        arrivals. When arrivals stopped, nothing held the loop up. The bloom
+        was fed by the same mechanism that starved it.
+      </p>
+    </div>
+    <div class="col">
+      <h3>3 · The survivorship lie</h3>
+      <p>
+        These five are the <em>famous</em> ones — the winners. Thousands of
+        collections closed at exactly zero and are not in this chart. Judging
+        the bubble by these five understates the carnage.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------------ -->
+<section class="panel">
+  <h2>The numbers</h2>
+  <div class="stats" id="stats"></div>
+</section>
+
+<!-- ------------------------------------------------------------------ -->
+<section class="panel">
+  <h2>Method</h2>
+  <div class="cols">
+    <div class="col">
+      <h3>Data</h3>
+      <p>
+        Hand-compiled monthly floor prices for five collections,
+        Jan 2021 → Oct 2026. Rounded, monthly, approximate — good enough to
+        trace the shape of a bubble, not good enough to trade on. Full
+        provenance in
+        <a href="https://github.com/maanas-pab/nft-graveyard-economics/blob/main/data/README.md">data/README.md</a>.
+      </p>
+    </div>
+    <div class="col">
+      <h3>The flower</h3>
+      <p>
+        Written twice on purpose: once in Python with Pillow
+        (<code>src/flower.py</code>) to print the plates, once in canvas
+        (<code>site/assets/flower.js</code>) to animate them. Same maths, so
+        the picture and the chart can never disagree.
+      </p>
+    </div>
+    <div class="col">
+      <h3>Reproduce</h3>
+      <p><code>make all</code> regenerates every image, chart, and this page’s
+      data from the three CSVs. No network, no API keys.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    A study in speculation. Not investment advice — the flowers already
+    settled that argument.
+  </p>
+  <p class="footer-links">
+    <a href="https://github.com/maanas-pab/nft-graveyard-economics">Source on GitHub</a>
+    · MIT licensed · data hand-compiled, approximations marked as such
+  </p>
+</footer>
+
+<script src="data/garden.js"></script>
+<script src="assets/flower.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
