@@ -153,7 +153,7 @@ Seventeen recorded events annotate the timeline — from *"BAYC mints 10000 apes
 | Control | Action |
 |---|---|
 | **Slider** | scrub any of the 70 months by hand |
-| **▶ / ⏸** | play the whole crash; press again at the end to replay |
+| **Play / Pause** | play the whole crash; press again at the end to replay |
 | **0.5× · 1× · 2×** | playback speed |
 | **Space** | play / pause |
 | **← →** | step one month; **Home** / **End** jump to 2021 / 2026 |
