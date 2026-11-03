@@ -50,3 +50,19 @@ def test_requirements_has_no_duplicates():
     names = [m.group(1) for m in
              re.finditer(r"^([A-Za-z][\w-]*)[<>=]", REQUIREMENTS.read_text(), re.M)]
     assert len(names) == len(set(names)), f"duplicate requirement: {names}"
+
+
+def test_license_is_present_and_advertised():
+    license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+    assert "MIT License" in license_text
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "MIT" in readme and "](LICENSE)" in readme, "README does not link the license"
+
+
+def test_provenance_notes_are_shipped():
+    """The dataset is hand-compiled; the caveats must travel with it."""
+    notes = ROOT / "data" / "README.md"
+    assert notes.exists(), "data/README.md (provenance) is missing"
+    text = notes.read_text(encoding="utf-8").lower()
+    for word in ("provenance", "caveat", "approx"):
+        assert word in text, f"provenance notes never mention {word}"
