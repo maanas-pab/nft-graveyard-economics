@@ -197,7 +197,7 @@ python3 -m http.server 8931 --directory site
 
 Requires Python 3.10+, `pandas`, `Pillow`, `matplotlib`, `pytest` — see [`requirements.txt`](requirements.txt).
 
-CI runs the whole suite on every push **and** re-exports `site/data/garden.js` from the CSVs, failing if a single byte differs from the committed artifact — the site can never drift away from the data.
+CI runs the whole suite on every push **and** re-exports `site/data/garden.js` from the CSVs, failing if a single byte differs from the committed artifact — the site can never drift away from the data. `make check` runs the same two gates locally, so you can catch a drift before you push; a weekly scheduled run catches dependency bit-rot even when nothing is committed.
 
 ---
 
