@@ -124,7 +124,7 @@ The same engine, frozen in print. `src/plates.py` renders Pillow plates for the 
 
 ---
 
-## 📊 The ledger
+## The ledger
 
 Headline numbers, computed by `src/pipeline.py` and pinned by the test suite:
 
@@ -148,7 +148,7 @@ Seventeen recorded events annotate the timeline — from *"BAYC mints 10000 apes
 
 ---
 
-## 🎮 Driving the garden
+## Driving the garden
 
 | Control | Action |
 |---|---|
