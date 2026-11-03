@@ -32,7 +32,9 @@ def numbers(text: str) -> set[float]:
 
 
 def bloom_py() -> str:
-    return section(PY, "def bloom_for", "def _shade")
+    # bounded at DEAD_LEAF: the module palette sits between bloom_for and
+    # _shade, and those RGB triplets are compared separately.
+    return section(PY, "def bloom_for", "DEAD_LEAF")
 
 
 def bloom_js() -> str:
