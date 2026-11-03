@@ -22,7 +22,7 @@ This project grows that number as a garden. Every collection is a flower. Every 
 
 ---
 
-## 🖼️ The garden
+## The garden
 
 Drag the timeline and watch the money leave. **April 2022 — the top of the bubble:**
 
@@ -43,7 +43,7 @@ Drag the timeline and watch the money leave. **April 2022 — the top of the bub
 
 ---
 
-## 🌱 How price becomes botany
+## How price becomes botany
 
 Every visual property of a flower is a pure function of two numbers: the current floor and the collection's running all-time high. Let **`r = floor / ATH`** (clipped to 0–1):
 
