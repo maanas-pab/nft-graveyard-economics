@@ -15,10 +15,10 @@ In **April 2022** the five most famous NFT collections on Earth held **$9.98 bil
 
 This project grows that number as a garden. Every collection is a flower. Every month is a frame. The floor price decides whether it blooms — or rots on the vine.
 
-- 🌸 **Interactive** — scrub 70 months on the live site: play, pause, 0.5×/1×/2×, jump to any of 17 market events, share any month as a URL
-- 🌾 **Generative art** — one price→botany engine, drawn twice: Pillow prints the specimen plates, canvas animates the live garden
-- 📉 **Honest economics** — monthly floors in ETH *and* USD, drawdowns from running all-time highs, event-annotated, provenance documented
-- ✅ **Tested** — 69 pytest checks pin the headline numbers and prove the wilt mapping is monotone, bounded, and deterministic
+- **Interactive** — scrub 70 months on the live site: play, pause, 0.5×/1×/2×, jump to any of 17 market events, share any month as a URL
+- **Generative art** — one price→botany engine, drawn twice: Pillow prints the specimen plates, canvas animates the live garden
+- **Honest economics** — monthly floors in ETH *and* USD, drawdowns from running all-time highs, event-annotated, provenance documented
+- **Tested** — 69 pytest checks pin the headline numbers and prove the wilt mapping is monotone, bounded, and deterministic
 
 ---
 
