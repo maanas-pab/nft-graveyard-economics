@@ -77,7 +77,7 @@ The whole graveyard at four moments each — **launch · peak · crash · today*
 
 ---
 
-## 📉 Four views of the collapse
+## Four views of the collapse
 
 Everything below is rendered by `src/charts.py` straight from the CSVs — no chart is hand-drawn.
 
@@ -106,7 +106,7 @@ Everything below is rendered by `src/charts.py` straight from the CSVs — no ch
 
 ---
 
-## 🏺 Specimen plates
+## Specimen plates
 
 The same engine, frozen in print. `src/plates.py` renders Pillow plates for the README, the site, and per-collection lifecycles (`assets/plates/lifecycle_bayc.png`, `…_punks.png`, `…_azuki.png`, `…_doodles.png`, `…_moonbirds.png`).
 
