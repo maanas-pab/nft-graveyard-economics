@@ -90,7 +90,7 @@ def bloom_for(price: float, ath: float, cell: tuple, seed: int = 0) -> Bloom:
     """
     ratio = min(1.0, max(0.0, price / ath)) if ath > 0 else 0.0
     log_span = math.log1p(ath) if ath > 0 else 1.0
-    size = (0.085 + 0.115 * (math.log1p(price) / log_span))  # fraction of width
+    size = 0.085 + 0.115 * (math.log1p(max(0.0, price)) / log_span)
 
     droop = (1.0 - ratio) ** 1.15
     shed_frac = max(0.0, (0.55 - ratio) / 0.55) ** 1.4      # shed only once bad
