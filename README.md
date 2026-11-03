@@ -174,7 +174,7 @@ Seventeen recorded events annotate the timeline — from *"BAYC mints 10000 apes
 | **Event chips** | click any of the 17 turning points to teleport there |
 | **URL hash** | `#2022-04` shares a month, `#play` auto-starts the show |
 
-Every readout — combined value, % destroyed, ETH price, per-collection floors and bars — recomputes from `site/data/garden.js` on each frame. Nothing on the page is a hardcoded number.
+Every readout — combined value, percent destroyed, ETH price, per-collection floors and bars — recomputes from `site/data/garden.js` on each frame. Nothing on the page is a hardcoded number.
 
 ---
 
