@@ -105,3 +105,45 @@ Everything below is rendered by `src/charts.py` straight from the CSVs — no ch
 </table>
 
 ---
+
+## 🏺 Specimen plates
+
+The same engine, frozen in print. `src/plates.py` renders Pillow plates for the README, the site, and per-collection lifecycles (`assets/plates/lifecycle_bayc.png`, `…_punks.png`, `…_azuki.png`, `…_doodles.png`, `…_moonbirds.png`).
+
+**November 2021 — PFPs are status goods, the garden at maximum mania:**
+
+<p align="center">
+  <img src="assets/plates/garden_2021-11-01.png" alt="Specimen plate: all five flowers in full bloom, November 2021" width="900">
+</p>
+
+**October 2026 — five years on, the same plate rebuilt from the same CSVs:**
+
+<p align="center">
+  <img src="assets/plates/garden_2026-10-01.png" alt="Specimen plate: five wilted flowers with headstones, October 2026" width="900">
+</p>
+
+---
+
+## 📊 The ledger
+
+Headline numbers, computed by `src/pipeline.py` and pinned by the test suite:
+
+| | |
+|---|---|
+| 🌸 **Peak** (Apr 2022) | **$9,982,000,000** combined floor — 3,220,000 ETH |
+| 🪦 **Today** (Oct 2026) | **$426,375,000** — 189,500 ETH |
+| 💀 **Destroyed** | **$9,555,625,000 (95.7%)** — never re-touched the old peak |
+| 📉 **Deepest drawdown** | Moonbirds **−99.2%** (22 ETH → 0.18 ETH) |
+| ⛽ **ETH/USD range** | $1,350 → $2,250 over the window |
+
+| Collection | ATH | ATH month | Peak value | Floor today | Drawdown |
+|---|---:|---|---:|---:|---:|
+| CryptoPunks | 150.00 ETH | 2022-04 | $4.65B | 15.00 ETH ($33,750) | **−90.0%** |
+| Bored Ape Yacht Club | 130.00 ETH | 2022-04 | $4.03B | 3.10 ETH ($6,975) | **−97.6%** |
+| Azuki | 19.00 ETH | 2022-04 | $589M | 0.48 ETH ($1,080) | **−97.5%** |
+| Doodles | 15.00 ETH | 2022-04 | $465M | 0.19 ETH ($428) | **−98.7%** |
+| Moonbirds | 22.00 ETH | 2022-05 | $484M | 0.18 ETH ($405) | **−99.2%** |
+
+Seventeen recorded events annotate the timeline — from *"BAYC mints 10000 apes at 0.08 ETH"* through Terra, Celsius, FTX, the Blur bounce, and *"Five years on: floors at 2-10% of peak."* Full provenance and caveats live in [`data/README.md`](data/README.md).
+
+---
