@@ -31,3 +31,16 @@ def test_readme_carries_no_emoji():
     """Headings and tables read as text; emoji were deliberately removed."""
     hits = EMOJI_RE.findall(README.read_text(encoding="utf-8"))
     assert not hits, f"README still contains emoji: {hits!r}"
+
+
+def test_badge_urls_are_https_and_scoped_to_this_repo():
+    text = README.read_text(encoding="utf-8")
+    urls = re.findall(r"\((https://[^)]+)\)", text)
+    badges = [u for u in urls if "badge.svg" in u or "img.shields.io" in u]
+    assert len(badges) >= 4, "the badge row is missing badges"
+    for u in badges:
+        assert u.startswith("https://"), f"insecure badge url: {u}"
+        assert REPO in u or u.startswith("https://img.shields.io"), u
+    ci = next(u for u in badges if "badge.svg" in u)
+    assert "actions/workflows/ci.yml/badge.svg" in ci
+    assert "branch=main" in ci, "pin the CI badge to the branch it reports"
