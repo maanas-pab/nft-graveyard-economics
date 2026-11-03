@@ -187,7 +187,8 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
 make all      # metrics + specimen plates + charts + GIF + site payload
-make test     # 69 data-integrity & unit tests
+make test     # data-integrity & unit tests
+make check    # tests + verify the committed site payload is reproducible
 
 # then browse the garden locally
 python3 -m http.server 8931 --directory site
