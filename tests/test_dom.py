@@ -36,3 +36,20 @@ def test_app_does_not_query_selectors_that_could_miss():
             assert sel[1:] in html_ids(), f"missing id for selector {sel}"
         elif sel.startswith("."):
             assert sel[1:] in html_classes, f"missing class for selector {sel}"
+
+
+def test_payload_loads_before_the_code_that_reads_it():
+    """garden.js must be parsed before flower.js and app.js run, or
+    window.GARDEN is undefined and nothing draws."""
+    order = [HTML.index(f'src="{s}"')
+             for s in ("data/garden.js", "assets/flower.js", "assets/app.js")]
+    assert order == sorted(order), "scripts are loaded out of order"
+
+
+def test_every_readout_the_page_shows_is_wired_up():
+    """Each readout span in the HTML is assigned by app.js — a label with a
+    permanent em-dash would look like a bug to a visitor."""
+    readouts = {i for i in html_ids() if i.startswith("ro-")}
+    assert len(readouts) >= 4, "the masthead readouts disappeared"
+    for rid in readouts:
+        assert f"'{rid}'" in APP, f"nothing ever writes #{rid}"
