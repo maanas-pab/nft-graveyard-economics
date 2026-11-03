@@ -39,3 +39,19 @@ def test_every_public_target_is_declared():
     missing = PUBLIC_TARGETS - phony
     assert not missing, f"targets not in .PHONY: {missing}"
     assert PUBLIC_TARGETS <= targets(), "a public target is missing its recipe"
+
+
+def test_check_reproduces_what_ci_does():
+    """`make check` must be the local mirror of the CI job, or the two drift.
+
+    The suite arrives through the `test` prerequisite; the recipe itself
+    rebuilds the payload and diffs it against the committed artifact.
+    """
+    text = MAKEFILE.read_text(encoding="utf-8")
+    block = re.search(r"^check:(.*?)^(?=[a-z][a-z0-9_-]*:|\Z)", text, re.M | re.S)
+    assert block, "no check target"
+    head, _, body = block.group(0).partition("\n")
+    assert "test" in head.split(":")[1].split(), "check must depend on the test target"
+    assert "src.pipeline --web" in body, "check does not rebuild the payload"
+    assert "git diff" in body, "check does not compare the rebuilt payload"
+    assert "garden.js" in body, "check does not gate on the site payload"
