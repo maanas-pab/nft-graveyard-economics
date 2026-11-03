@@ -147,3 +147,72 @@ Headline numbers, computed by `src/pipeline.py` and pinned by the test suite:
 Seventeen recorded events annotate the timeline — from *"BAYC mints 10000 apes at 0.08 ETH"* through Terra, Celsius, FTX, the Blur bounce, and *"Five years on: floors at 2-10% of peak."* Full provenance and caveats live in [`data/README.md`](data/README.md).
 
 ---
+
+## 🎮 Driving the garden
+
+| Control | Action |
+|---|---|
+| **Slider** | scrub any of the 70 months by hand |
+| **▶ / ⏸** | play the whole crash; press again at the end to replay |
+| **0.5× · 1× · 2×** | playback speed |
+| **Space** | play / pause |
+| **← →** | step one month; **Home** / **End** jump to 2021 / 2026 |
+| **Event chips** | click any of the 17 turning points to teleport there |
+| **URL hash** | `#2022-04` shares a month, `#play` auto-starts the show |
+
+Every readout — combined value, % destroyed, ETH price, per-collection floors and bars — recomputes from `site/data/garden.js` on each frame. Nothing on the page is a hardcoded number.
+
+---
+
+## 🔧 Reproduce it
+
+```bash
+git clone https://github.com/maanas-pab/nft-graveyard-economics.git
+cd nft-graveyard-economics
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+make all      # metrics + specimen plates + charts + GIF + site payload
+make test     # 69 data-integrity & unit tests
+
+# then browse the garden locally
+python3 -m http.server 8931 --directory site
+# → http://localhost:8931/#play
+```
+
+Requires Python 3.10+, `pandas`, `Pillow`, `matplotlib`, `pytest` — see [`requirements.txt`](requirements.txt).
+
+CI runs the whole suite on every push **and** re-exports `site/data/garden.js` from the CSVs, failing if a single byte differs from the committed artifact — the site can never drift away from the data.
+
+---
+
+## 📁 Repository structure
+
+```
+nft-graveyard-economics/
+├── data/                    hand-compiled CSVs — floors, ETH/USD, metadata, events
+│   └── README.md            provenance, coverage, and honest caveats
+├── src/
+│   ├── pipeline.py          pandas: ATH, drawdowns, market value, web payload
+│   ├── flower.py            Pillow: the price → botany engine
+│   ├── plates.py            specimen plates + the 5×4 lifecycle contact sheet
+│   ├── charts.py            the four economics charts
+│   └── garden_gif.py        70-frame wilting animation
+├── site/                    the interactive garden — no framework, no build step
+│   ├── index.html
+│   ├── assets/flower.js     canvas port of flower.py (same math, mulberry32 RNG)
+│   ├── assets/app.js        timeline, playback, readouts, deep links
+│   └── data/garden.js       payload exported by `make site`
+├── tests/                   69 checks: data integrity, wilt math, pipeline stats
+├── assets/                  generated art, committed (plates, charts, GIF, shots)
+├── .github/workflows/ci.yml pytest + payload reproducibility
+└── Makefile                 make all / data / flowers / charts / gif / site / test
+```
+
+---
+
+## ⚖️ License & disclaimers
+
+MIT — see [`LICENSE`](LICENSE).
+
+Floor prices are **hand-compiled monthly approximations** of observed marketplace floors, good enough to trace the shape of the bubble and its collapse, and **not** settlement data. Monthly sampling understates the real drawdowns, the sample is survivor-biased toward famous projects (thousands of collections went to exactly zero and aren't here — making these losses a *lower* bound), and nothing in this repo is financial advice. Details in [`data/README.md`](data/README.md).
