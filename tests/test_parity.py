@@ -54,3 +54,20 @@ def test_the_shared_mapping_is_the_documented_formula():
         assert "1.15" in body, "droop exponent missing"
         assert "0.55" in body, "petal-shed threshold missing"
         assert "0.65" in body and "0.55" in body, "saturation/value exponents"
+
+
+def _rgb(text: str, name: str) -> tuple[int, ...]:
+    m = re.search(rf"{name}\s*=\s*[\(\[]\s*([0-9,\s]+?)\s*[\)\]]", text)
+    assert m, f"{name} not found"
+    return tuple(int(v) for v in m.group(1).split(","))
+
+
+def test_shared_palette_is_identical():
+    for name in ("DEAD_LEAF", "GREEN_LIVE", "GREEN_DEAD"):
+        assert _rgb(PY, name) == _rgb(JS, name), f"{name} differs between engines"
+
+
+def test_ground_line_sits_at_the_same_height():
+    """Both renderers put the soil at 84.5% of the cell — or the stems float."""
+    assert "0.845" in section(PY, "def render_flower", "def ") or "0.845" in PY
+    assert "0.845" in JS
