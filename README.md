@@ -2,7 +2,7 @@
 
 **An economic autopsy of five blue-chip NFTs — told in flowers that wilt with the floor price.**
 
-[![CI](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml/badge.svg)](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml)
+[![CI](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml)
 [![Live site](https://img.shields.io/badge/live-GitHub%20Pages-2a6b4a?logo=githubpages&logoColor=white)](https://maanas-pab.github.io/nft-graveyard-economics/)
 [![Tests](https://img.shields.io/badge/tests-69%20passed-brightgreen)](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-d0a04a)](LICENSE)
