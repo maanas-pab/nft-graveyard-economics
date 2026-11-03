@@ -1,5 +1,6 @@
 # Data pipeline & art generation
 pandas>=2.0
+numpy>=1.26         # charts.py plots with it directly
 Pillow>=10.0
 matplotlib>=3.7
 
