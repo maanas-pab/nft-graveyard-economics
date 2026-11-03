@@ -71,5 +71,6 @@ def test_shared_palette_is_identical():
 
 def test_ground_line_sits_at_the_same_height():
     """Both renderers put the soil at 84.5% of the cell — or the stems float."""
-    assert "0.845" in section(PY, "def render_flower", "def ") or "0.845" in PY
-    assert "0.845" in JS
+    py_render = PY[PY.index("def render_flower"):]
+    assert "0.845" in py_render, "python engine moved the soil"
+    assert "0.845" in JS, "canvas engine moved the soil"
