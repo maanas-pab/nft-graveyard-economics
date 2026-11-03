@@ -24,18 +24,30 @@ def test_app_only_touches_ids_that_exist():
     assert not missing, f"app.js looks for elements index.html does not have: {missing}"
 
 
-def test_app_does_not_query_selectors_that_could_miss():
-    """Every selector app.js uses must be anchored to an id or a class
-    index.html actually declares, so a markup rename cannot silently
-    detach the timeline from the data."""
-    classes = set(re.findall(r'class="([^"]+)"', HTML))
-    html_classes = {c for group in classes for c in group.split()}
-    used = set(re.findall(r"querySelector(?:All)?\('([^']+)'\)", APP))
+def html_classes() -> set[str]:
+    groups = set(re.findall(r'class="([^"]+)"', HTML))
+    return {c for group in groups for c in group.split()}
+
+
+def test_timeline_selectors_are_present_in_the_markup():
+    """Anything app.js binds to at startup must exist in index.html, or the
+    controls silently stop responding."""
+    used = set(re.findall(r"document\.querySelector(?:All)?\('([^']+)'\)", APP))
+    assert used, "app.js stopped binding to the document"
     for sel in used:
         if sel.startswith("#"):
             assert sel[1:] in html_ids(), f"missing id for selector {sel}"
         elif sel.startswith("."):
-            assert sel[1:] in html_classes, f"missing class for selector {sel}"
+            assert sel[1:] in html_classes(), f"missing class for selector {sel}"
+
+
+def test_card_selectors_are_emitted_by_the_template_that_owns_them():
+    """The specimen cards are built by app.js itself, so their classes have
+    to appear in the template string that also queries them."""
+    scoped = set(re.findall(r"querySelector(?:All)?\('\.(card-[\w-]+)", APP))
+    assert scoped, "the specimen cards are no longer queried by class"
+    for cls in scoped:
+        assert f'class="{cls}' in APP, f"template never renders .{cls}"
 
 
 def test_payload_loads_before_the_code_that_reads_it():
