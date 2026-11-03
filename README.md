@@ -220,7 +220,8 @@ nft-graveyard-economics/
 │   └── data/garden.js       payload exported by `make site`
 ├── tests/                   contracts: data, wilt math, site payload, README, CI, make
 ├── assets/                  generated art, committed (plates, charts, GIF, shots)
-├── .github/workflows/ci.yml pytest + payload reproducibility
+├── .gitattributes           LF for text, binary for the generated art
+├── .github/workflows/ci.yml pytest + payload gate, weekly canary
 └── Makefile                 make all / data / flowers / charts / gif / site / test / check / serve
 ```
 
