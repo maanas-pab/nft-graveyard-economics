@@ -6,6 +6,9 @@ permissions:
 on:
   push:
     branches: [main]
+  schedule:
+    # weekly canary: catches dependency or runner bit-rot without a push
+    - cron: "17 6 * * 1"
   pull_request:
   workflow_dispatch:
 
