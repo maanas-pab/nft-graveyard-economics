@@ -181,7 +181,8 @@ def web_payload(df: pd.DataFrame, tot: pd.DataFrame, ev: pd.DataFrame) -> dict:
              "label": e["label"], "kind": e["kind"]}
             for _, e in ev.iterrows()
         ],
-        "generated": pd.Timestamp.now().strftime("%Y-%m-%d"),
+        # data cutoff, not wall-clock: a rebuild must be byte-identical
+        "generated": pd.Timestamp(months[-1]).strftime("%Y-%m"),
     }
 
 
