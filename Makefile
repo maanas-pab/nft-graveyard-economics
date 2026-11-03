@@ -46,3 +46,5 @@ serve:
 
 clean:
 	rm -rf build/*
+	find . -name __pycache__ -type d -prune -exec rm -rf {} +
+	rm -rf .pytest_cache
