@@ -76,3 +76,32 @@ The whole graveyard at four moments each — **launch · peak · crash · today*
 </p>
 
 ---
+
+## 📉 Four views of the collapse
+
+Everything below is rendered by `src/charts.py` straight from the CSVs — no chart is hand-drawn.
+
+<table>
+<tr>
+<td width="50%">
+  <a href="assets/charts/destruction.png"><img src="assets/charts/destruction.png" alt="Area chart: combined floor value peaks at $9.98B in April 2022 and falls to $426M by October 2026"></a>
+  <br><sub><b>The scoreboard.</b> Sum of floor × supply across all five: $9.98B → $426M, <b>$9.56B destroyed (95.7%)</b>. The dashed line is the peak never re-touched.</sub>
+</td>
+<td width="50%">
+  <a href="assets/charts/drawdown.png"><img src="assets/charts/drawdown.png" alt="Line chart: every collection's drawdown from its running all-time high, all crossing −90% by 2024"></a>
+  <br><sub><b>One long fall.</b> Each month's close vs. the highest floor ever seen. Everything crosses the −90% line — CryptoPunks last, at −90.0%.</sub>
+</td>
+</tr>
+<tr>
+<td width="50%">
+  <a href="assets/charts/prices.png"><img src="assets/charts/prices.png" alt="Log-scale floor prices for all five collections, 2021 to 2026, with peaks annotated"></a>
+  <br><sub><b>The raw floors, log scale.</b> Peaks annotated (Punks 150, BAYC 130, Doodles 15, Azuki 19, Moonbirds 22 ETH); dashed lines mark recorded turning points.</sub>
+</td>
+<td width="50%">
+  <a href="assets/charts/bloom.png"><img src="assets/charts/bloom.png" alt="Heatmap of floor divided by all-time high for each collection and month, dark orange at the peak fading to near-white by 2024"></a>
+  <br><sub><b>The engine's input.</b> <code>floor / ATH</code> per month — the exact number that sets every flower's colour, size, and droop. Dark = blooming, pale = dead.</sub>
+</td>
+</tr>
+</table>
+
+---
