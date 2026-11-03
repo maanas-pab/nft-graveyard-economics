@@ -5,3 +5,4 @@ matplotlib>=3.7
 
 # Dev tooling
 pytest>=7.4
+pyyaml>=6.0        # tests parse .github/workflows/ci.yml
