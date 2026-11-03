@@ -10,6 +10,8 @@
 #   make check    tests + verify site/data/garden.js is byte-reproducible
 #   make serve    preview the garden at http://localhost:8931/#play
 #   make clean    remove build artifacts (assets/ and site/data/ stay in git)
+#
+#   PYTHON=python3.12 make test   run any target with a different interpreter
 
 PYTHON ?= python3
 
@@ -17,7 +19,9 @@ PYTHON ?= python3
 
 all: data flowers charts gif site
 
-data:
+data: build/metrics.csv
+
+build/metrics.csv:
 	$(PYTHON) -m src.pipeline
 
 flowers:
