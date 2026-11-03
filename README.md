@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml)
 [![Live site](https://img.shields.io/badge/live-GitHub%20Pages-2a6b4a?logo=githubpages&logoColor=white)](https://maanas-pab.github.io/nft-graveyard-economics/)
-[![Tests](https://img.shields.io/badge/tests-69%20passed-brightgreen)](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-104%20passed-brightgreen)](https://github.com/maanas-pab/nft-graveyard-economics/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-d0a04a)](LICENSE)
 
 <p align="center">
@@ -18,7 +18,7 @@ This project grows that number as a garden: every collection is a flower, every 
 - **Interactive** — scrub 70 months on the live site: play, pause, 0.5×/1×/2×, jump to any of 17 market events, share any month as a URL
 - **Generative art** — one price→botany engine, drawn twice: Pillow prints the specimen plates, canvas animates the live garden
 - **Honest economics** — monthly floors in ETH *and* USD, drawdowns from running all-time highs, event-annotated, provenance documented
-- **Tested** — 69 pytest checks pin the headline numbers and prove the wilt mapping is monotone, bounded, and deterministic
+- **Tested** — 104 pytest checks pin the headline numbers and prove the wilt mapping is monotone, bounded, and deterministic
 
 ---
 
