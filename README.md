@@ -218,7 +218,7 @@ nft-graveyard-economics/
 │   ├── assets/flower.js     canvas port of flower.py (same math, mulberry32 RNG)
 │   ├── assets/app.js        timeline, playback, readouts, deep links
 │   └── data/garden.js       payload exported by `make site`
-├── tests/                   69 checks: data integrity, wilt math, pipeline stats
+├── tests/                   contracts: data, wilt math, site payload, README, CI, make
 ├── assets/                  generated art, committed (plates, charts, GIF, shots)
 ├── .github/workflows/ci.yml pytest + payload reproducibility
 └── Makefile                 make all / data / flowers / charts / gif / site / test
