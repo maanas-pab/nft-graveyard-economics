@@ -22,6 +22,7 @@ STDLIB = getattr(sys, "stdlib_module_names", None) or {
 # importable module name -> the name it is declared under in requirements.txt
 MODULE_TO_REQUIREMENT = {
     "pandas": "pandas",
+    "numpy": "numpy",
     "PIL": "Pillow",
     "matplotlib": "matplotlib",
     "pytest": "pytest",
