@@ -45,3 +45,15 @@ def test_workflow_still_runs_the_suite_and_the_payload_gate(wf):
     assert any("pytest" in r for r in runs), "CI no longer runs the tests"
     assert any("src.pipeline --web" in r for r in runs), "CI no longer rebuilds the payload"
     assert any("git diff" in r for r in runs), "CI no longer gates on reproducibility"
+
+
+def test_workflow_runs_on_a_schedule_and_by_hand(wf):
+    on = triggers(wf)
+    assert "schedule" in on and on["schedule"], "no canary schedule"
+    assert "workflow_dispatch" in on, "cannot be run by hand"
+
+
+def test_workflow_is_locked_down(wf):
+    assert wf["permissions"] == {"contents": "read"}, "workflow token is over-privileged"
+    assert wf["jobs"]["test"]["timeout-minutes"] <= 10, "job can hang for hours"
+    assert "concurrency" in wf, "superseded runs pile up"
