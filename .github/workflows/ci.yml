@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Data integrity & unit tests
+        run: python -m pytest -q
+
+      - name: Rebuild the web payload from the CSVs
+        run: python -m src.pipeline --web
+
+      - name: The exported payload must be reproducible
+        run: |
+          git add site/data/garden.js
+          test -z "$(git diff --cached --name-only)" ||
+            (echo "::error::site/data/garden.js differs from a fresh build" &&
+             git diff --cached && exit 1)
