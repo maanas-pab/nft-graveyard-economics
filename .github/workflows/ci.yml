@@ -32,7 +32,15 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Data integrity & unit tests
-        run: python -m pytest -q
+        run: python -m pytest -q --junitxml=pytest-report.xml
+
+      - name: Upload the test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report
+          path: pytest-report.xml
+          retention-days: 7
 
       - name: Rebuild the web payload from the CSVs
         run: python -m src.pipeline --web
