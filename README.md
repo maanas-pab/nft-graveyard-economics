@@ -13,7 +13,7 @@
 
 In **April 2022** the five most famous NFT collections on Earth held **$9.98 billion** of floor value — 3.22M ETH under five species of pixel botany. By **October 2026** they hold **$426 million**. **95.7% of it is gone.**
 
-This project grows that number as a garden. Every collection is a flower. Every month is a frame. The floor price decides whether it blooms — or rots on the vine.
+This project grows that number as a garden: every collection is a flower, every month is a frame, and the floor price decides whether it blooms — or rots on the vine.
 
 - **Interactive** — scrub 70 months on the live site: play, pause, 0.5×/1×/2×, jump to any of 17 market events, share any month as a URL
 - **Generative art** — one price→botany engine, drawn twice: Pillow prints the specimen plates, canvas animates the live garden
