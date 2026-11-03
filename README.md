@@ -164,7 +164,7 @@ Every readout — combined value, % destroyed, ETH price, per-collection floors 
 
 ---
 
-## 🔧 Reproduce it
+## Reproduce it
 
 ```bash
 git clone https://github.com/maanas-pab/nft-graveyard-economics.git
@@ -186,7 +186,7 @@ CI runs the whole suite on every push **and** re-exports `site/data/garden.js` f
 
 ---
 
-## 📁 Repository structure
+## Repository structure
 
 ```
 nft-graveyard-economics/
@@ -211,7 +211,7 @@ nft-graveyard-economics/
 
 ---
 
-## ⚖️ License & disclaimers
+## License and disclaimers
 
 MIT — see [`LICENSE`](LICENSE).
 
