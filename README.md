@@ -134,7 +134,7 @@ Headline numbers, computed by `src/pipeline.py` and pinned by the test suite:
 | 🪦 **Today** (Oct 2026) | **$426,375,000** — 189,500 ETH |
 | 💀 **Destroyed** | **$9,555,625,000 (95.7%)** — never re-touched the old peak |
 | 📉 **Deepest drawdown** | Moonbirds **−99.2%** (22 ETH → 0.18 ETH) |
-| ⛽ **ETH/USD range** | $1,350 → $2,250 over the window |
+| ⛽ **ETH/USD range** | $1,200 → $4,500 over the window |
 
 | Collection | ATH | ATH month | Peak value | Floor today | Drawdown |
 |---|---:|---|---:|---:|---:|
