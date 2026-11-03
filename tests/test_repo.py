@@ -12,6 +12,13 @@ REQUIREMENTS = ROOT / "requirements.txt"
 SOURCES = sorted((ROOT / "src").glob("*.py")) + sorted((ROOT / "tests").glob("*.py"))
 
 FIRST_PARTY = {"src"}
+
+# sys.stdlib_module_names exists from 3.10; fall back to the names this
+# codebase actually reaches for so the test also runs on older local pythons.
+STDLIB = getattr(sys, "stdlib_module_names", None) or {
+    "__future__", "argparse", "colorsys", "dataclasses", "datetime", "json",
+    "math", "pathlib", "random", "re", "subprocess", "sys",
+}
 # importable module name -> the name it is declared under in requirements.txt
 MODULE_TO_REQUIREMENT = {
     "pandas": "pandas",
@@ -28,7 +35,7 @@ def third_party_imports() -> set[str]:
         text = path.read_text(encoding="utf-8")
         for mod in re.findall(r"^\s*(?:import|from)\s+([A-Za-z_][\w.]*)", text, re.M):
             root = mod.split(".")[0]
-            if root in sys.stdlib_module_names or root in FIRST_PARTY:
+            if root in STDLIB or root in FIRST_PARTY:
                 continue
             found.add(root)
     return found
