@@ -22,6 +22,20 @@ This project grows that number as a garden. Every collection is a flower. Every 
 
 ---
 
+## Contents
+
+- [The garden](#the-garden)
+- [How price becomes botany](#how-price-becomes-botany)
+- [Four views of the collapse](#four-views-of-the-collapse)
+- [Specimen plates](#specimen-plates)
+- [The ledger](#the-ledger)
+- [Driving the garden](#driving-the-garden)
+- [Reproduce it](#reproduce-it)
+- [Repository structure](#repository-structure)
+- [License and disclaimers](#license-and-disclaimers)
+
+---
+
 ## The garden
 
 Drag the timeline and watch the money leave. **April 2022 — the top of the bubble:**
