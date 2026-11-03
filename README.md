@@ -42,3 +42,37 @@ Drag the timeline and watch the money leave. **April 2022 — the top of the bub
 > [`#play`](https://maanas-pab.github.io/nft-graveyard-economics/#play) plays all 70 months.
 
 ---
+
+## 🌱 How price becomes botany
+
+Every visual property of a flower is a pure function of two numbers: the current floor and the collection's running all-time high. Let **`r = floor / ATH`** (clipped to 0–1):
+
+| Parameter | Formula | What you see |
+|---|---|---|
+| **Bloom size** | `0.085 + 0.115 · ln(1+floor) / ln(1+ATH)` | head radius. Log scale, because a 130 ETH floor is 43× the price of 3 ETH but must not be 43× the bloom |
+| **Droop** | `(1 − r)^1.15` | the stem bows and the petals sag toward the soil |
+| **Petal shed** | `((0.55 − r) / 0.55)^1.4` | petals detach and lie flattened on the ground — **zero above 55% of ATH**, then accelerating |
+| **Saturation** | `0.18 + 0.82 · r^0.65` | colour drains toward leaf-litter brown |
+| **Value** | `0.30 + 0.70 · r^0.55` | the bloom darkens as it dies |
+| **Stem lean** | `droop × ±0.16` | mirror-image lean, alternating by seed so the row never looks stamped |
+| **Headstone** | when drawdown ≤ −90% | engraved with the number: `−97%`, `−99%` |
+
+Two curves do the emotional work. **Shed** is flat until the floor breaks — nothing falls while prices are merely "down a bit" — then petals drop off in a rush. **Saturation** uses `r^0.65`, so colour fades slowly at first and then all at once, which is what the crash actually felt like.
+
+### Five species, one per collection
+
+| Collection | Genus | Petals | Petal shape | Accent | Launched |
+|---|---|---:|---|---|---|
+| CryptoPunks | *Pixela* | 6 | blocky | `#7FE0C8` | 2017-06 (free claim) |
+| Bored Ape Yacht Club | *Simia* | 8 | round | `#D9A441` | 2021-05 @ 0.08 ETH |
+| Azuki | *Phaseolus* | 5 | pointed | `#E4553F` | 2022-01 @ 1.00 ETH |
+| Doodles | *Pictura* | 7 | round | `#F2A0C4` | 2021-09 @ 0.12 ETH |
+| Moonbirds | *Strix* | 6 | pointed | `#8FA8E8` | 2022-04 @ 1.50 ETH |
+
+The whole graveyard at four moments each — **launch · peak · crash · today** — one row per species:
+
+<p align="center">
+  <img src="assets/plates/lifecycle_grid.png" alt="Lifecycle plate: all five collections rendered at launch, peak (Apr 2022), crash (Nov 2022) and today (Oct 2026)" width="620">
+</p>
+
+---
